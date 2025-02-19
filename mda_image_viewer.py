@@ -20,7 +20,7 @@ def show_image():
 
     h_pwm = GPIO.PWM(h_sync_pin, h_sync)
     v_pwm = GPIO.PWM(v_sync_pin, v_sync)
-    h_pwm.start(0)
+    h_pwm.start(0.5)
     v_pwm.start(0)
 
 
