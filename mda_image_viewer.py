@@ -16,8 +16,6 @@ def setup_sync():
 
     pi.set_mode(h_sync_pin, pigpio.OUTPUT)
     pi.set_mode(v_sync_pin, pigpio.OUTPUT)
-    pi.set_mode(intensity_pin, pigpio.OUTPUT)
-    pi.set_mode(video_pin, pigpio.OUTPUT)
 
     # Use hardware PWM for h_sync_pin
     pi.hardware_PWM(h_sync_pin, h_sync, 500000)  # 50% duty cycle
@@ -30,6 +28,9 @@ def display_image():
     global pi
     intensity_pin = 18
     video_pin = 12
+
+    pi.set_mode(intensity_pin, pigpio.OUTPUT)
+    pi.set_mode(video_pin, pigpio.OUTPUT)
 
     pi.set_PWM_frequency(intensity_pin, 1000)
     pi.set_PWM_dutycycle(intensity_pin, 128)  # Full intensity
