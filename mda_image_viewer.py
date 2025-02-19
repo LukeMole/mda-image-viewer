@@ -32,6 +32,8 @@ def display_image():
     pi.set_mode(intensity_pin, pigpio.OUTPUT)
     pi.set_mode(video_pin, pigpio.OUTPUT)
 
+    pi.write(intensity_pin, 1)
+
     #pi.set_PWM_frequency(intensity_pin, 1000)
     #pi.set_PWM_dutycycle(intensity_pin, 128)  # Full intensity
 
