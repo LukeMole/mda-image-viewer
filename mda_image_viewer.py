@@ -30,6 +30,9 @@ def show_image():
     pi.set_PWM_frequency(intensity_pin, 1000)
     pi.set_PWM_dutycycle(intensity_pin, 128)  # Full intensity
 
+    pi.set_PWM_frequency(video_pin, 2000)
+    pi.set_PWM_dutycycle(video_pin, 128)  # Full intensity
+
 if __name__ == '__main__':
     show_image()
 
