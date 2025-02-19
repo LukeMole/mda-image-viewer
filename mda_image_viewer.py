@@ -6,7 +6,7 @@ def show_image():
     v_sync = 50
     h_pixels = 720
     v_pixels = 350
-    h_sync_pin = 8
+    h_sync_pin = 13
     v_sync_pin = 19
     intensity_pin = 18
     video_pin = 12
