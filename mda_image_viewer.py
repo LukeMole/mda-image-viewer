@@ -1,4 +1,5 @@
 import pigpio
+import RPi.GPIO as GPIO
 import time
 
 pi = pigpio.pi()
@@ -29,10 +30,11 @@ def display_image():
     intensity_pin = 18
     video_pin = 12
 
-    pi.set_mode(intensity_pin, pigpio.OUTPUT)
-    pi.set_mode(video_pin, pigpio.OUTPUT)
-
-    pi.write(intensity_pin, 1)
+    GPIO.setwarnings(False)
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(intensity_pin, GPIO.OUT)
+    GPIO.setup(video_pin, GPIO.OUT)
+    GPIO.output(intensity_pin, GPIO.HIGH)
 
     #pi.set_PWM_frequency(intensity_pin, 1000)
     #pi.set_PWM_dutycycle(intensity_pin, 128)  # Full intensity
@@ -40,8 +42,8 @@ def display_image():
     #pi.set_PWM_frequency(video_pin, 2000)
     #pi.set_PWM_dutycycle(video_pin, 128)  # Full intensity
     while True:
-        pi.write(video_pin, 1)
-        pi.write(video_pin, 0)
+        GPIO.output(video_pin, GPIO.HIGH)
+        GPIO.output(video_pin, GPIO.LOW)
 
 if __name__ == '__main__':
     setup_sync()
