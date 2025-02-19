@@ -39,13 +39,8 @@ def display_image():
     #pi.set_PWM_dutycycle(video_pin, 128)  # Full intensity
     while True:
         pi.write(video_pin, 1)
-        time.sleep(0.001)
         pi.write(video_pin, 0)
-        time.sleep(0.001)
 
 if __name__ == '__main__':
     setup_sync()
     display_image()
-
-    for i in range(10):
-        time.sleep(1)
