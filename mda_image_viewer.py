@@ -27,6 +27,9 @@ def show_image():
     pi.set_PWM_frequency(v_sync_pin, v_sync)
     pi.set_PWM_dutycycle(v_sync_pin, 128)  # 50% duty cycle (128/255)
 
+    pi.set_PWM_frequency(intensity_pin, 1000)
+    pi.set_PWM_dutycycle(intensity_pin, 128)  # Full intensity
+
 if __name__ == '__main__':
     show_image()
 
