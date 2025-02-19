@@ -20,8 +20,12 @@ def show_image():
     pi.set_mode(intensity_pin, pigpio.OUTPUT)
     pi.set_mode(video_pin, pigpio.OUTPUT)
 
+    # Use hardware PWM for h_sync_pin
     pi.hardware_PWM(h_sync_pin, h_sync, 500000)  # 50% duty cycle
-    pi.hardware_PWM(v_sync_pin, v_sync, 500000)  # 50% duty cycle
+
+    # Use software PWM for v_sync_pin
+    pi.set_PWM_frequency(v_sync_pin, v_sync)
+    pi.set_PWM_dutycycle(v_sync_pin, 128)  # 50% duty cycle (128/255)
 
 if __name__ == '__main__':
     show_image()
