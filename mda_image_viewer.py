@@ -32,11 +32,16 @@ def display_image():
     pi.set_mode(intensity_pin, pigpio.OUTPUT)
     pi.set_mode(video_pin, pigpio.OUTPUT)
 
-    pi.set_PWM_frequency(intensity_pin, 1000)
-    pi.set_PWM_dutycycle(intensity_pin, 128)  # Full intensity
+    #pi.set_PWM_frequency(intensity_pin, 1000)
+    #pi.set_PWM_dutycycle(intensity_pin, 128)  # Full intensity
 
-    pi.set_PWM_frequency(video_pin, 2000)
-    pi.set_PWM_dutycycle(video_pin, 128)  # Full intensity
+    #pi.set_PWM_frequency(video_pin, 2000)
+    #pi.set_PWM_dutycycle(video_pin, 128)  # Full intensity
+    while True:
+        pi.write(video_pin, 1)
+        time.sleep(0.001)
+        pi.write(video_pin, 0)
+        time.sleep(0.001)
 
 if __name__ == '__main__':
     setup_sync()
