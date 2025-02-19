@@ -21,7 +21,7 @@ def show_image():
     pi.set_mode(video_pin, pigpio.OUTPUT)
 
     pi.hardware_PWM(h_sync_pin, h_sync, 500000)  # 50% duty cycle
-    #pi.hardware_PWM(v_sync_pin, v_sync, 500000)  # 50% duty cycle
+    pi.hardware_PWM(v_sync_pin, v_sync, 500000)  # 50% duty cycle
 
 if __name__ == '__main__':
     show_image()
