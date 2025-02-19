@@ -1,4 +1,4 @@
-import RPi.GPIO as GPIO
+import pigpio
 import time
 
 def show_image():
@@ -11,20 +11,17 @@ def show_image():
     intensity_pin = 18
     video_pin = 12
 
-    GPIO.setwarnings(False)
-    GPIO.setmode(GPIO.BOARD)
-    GPIO.setup(h_sync_pin, GPIO.OUT)
-    GPIO.setup(v_sync_pin, GPIO.OUT)
-    GPIO.setup(intensity_pin, GPIO.OUT)
-    GPIO.setup(video_pin, GPIO.OUT)
+    pi = pigpio.pi()
+    if not pi.connected:
+        exit()
 
-    h_pwm = GPIO.PWM(h_sync_pin, h_sync)
-    v_pwm = GPIO.PWM(v_sync_pin, v_sync)
-    h_pwm.start(50)
-    v_pwm.start(0)
+    pi.set_mode(h_sync_pin, pigpio.OUTPUT)
+    pi.set_mode(v_sync_pin, pigpio.OUTPUT)
+    pi.set_mode(intensity_pin, pigpio.OUTPUT)
+    pi.set_mode(video_pin, pigpio.OUTPUT)
 
-
-
+    pi.hardware_PWM(h_sync_pin, h_sync, 500000)  # 50% duty cycle
+    pi.hardware_PWM(v_sync_pin, v_sync, 500000)  # 50% duty cycle
 
 if __name__ == '__main__':
     show_image()
