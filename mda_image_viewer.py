@@ -1,19 +1,18 @@
 import pigpio
 import time
 
-def show_image():
+pi = pigpio.pi()
+if not pi.connected:
+    exit()
+
+def setup_sync():
+    global pi
     h_sync = 18430
     v_sync = 50
     h_pixels = 720
     v_pixels = 350
     h_sync_pin = 13
     v_sync_pin = 19
-    intensity_pin = 18
-    video_pin = 12
-
-    pi = pigpio.pi()
-    if not pi.connected:
-        exit()
 
     pi.set_mode(h_sync_pin, pigpio.OUTPUT)
     pi.set_mode(v_sync_pin, pigpio.OUTPUT)
@@ -27,6 +26,11 @@ def show_image():
     pi.set_PWM_frequency(v_sync_pin, v_sync)
     pi.set_PWM_dutycycle(v_sync_pin, 128)  # 50% duty cycle (128/255)
 
+def display_image():
+    global pi
+    intensity_pin = 18
+    video_pin = 12
+
     pi.set_PWM_frequency(intensity_pin, 1000)
     pi.set_PWM_dutycycle(intensity_pin, 128)  # Full intensity
 
@@ -34,7 +38,8 @@ def show_image():
     pi.set_PWM_dutycycle(video_pin, 128)  # Full intensity
 
 if __name__ == '__main__':
-    show_image()
+    setup_sync()
+    display_image()
 
     for i in range(10):
         time.sleep(1)
