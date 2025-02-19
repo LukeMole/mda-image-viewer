@@ -18,7 +18,7 @@ def show_image():
     GPIO.setup(intensity_pin, GPIO.OUT)
     GPIO.setup(video_pin, GPIO.OUT)
 
-    h_pwm = GPIO.PWM(h_sync_pin, 1000)
+    h_pwm = GPIO.PWM(h_sync_pin, h_sync)
     v_pwm = GPIO.PWM(v_sync_pin, v_sync)
     h_pwm.start(0)
     v_pwm.start(0)
